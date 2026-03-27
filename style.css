@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+:root {
+    --saffron: #FF671F; 
+    --saffron-dark: #cc4a10; 
+    --black: #000000;
+    --text-dark: #1e293b;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background: var(--bg-light); color: var(--text-dark); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* Header & Nav (Kept clean and white!) */
+header {
+    background: var(--white);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-bottom: 3px solid var(--saffron);
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.5rem; font-weight: 800; color: var(--black); 
+    text-decoration: none;
+}
+
+.dynamic-icon { width: 40px; height: 40px; }
+
+/* Desktop Menu */
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { color: var(--text-dark); text-decoration: none; font-weight: 600; transition: var(--transition); }
+.nav-links a:hover { color: var(--saffron); }
+
+/* Mobile Hamburger */
+.menu-btn { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; }
+.menu-btn div { width: 30px; height: 3px; background: var(--black); transition: var(--transition); border-radius: 3px;}
+
+@media (max-width: 1024px) {
+    .menu-btn { display: flex; }
+    
+    /* THE FIX: The Side-Sliding Window is now Saffron */
+    .nav-links {
+        position: fixed; top: 0; right: -100%; height: 100vh; width: 280px;
+        background: var(--saffron); /* Beautiful Saffron background */
+        flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3); transition: right 0.3s ease;
+    }
+    .nav-links.active { right: 0; }
+    
+    /* Mobile Menu Links turned White for readability */
+    .nav-links a { color: var(--white); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;}
+    .nav-links a:hover { color: var(--black); transform: scale(1.05); }
+
+    /* The Hamburger turns into a White 'X' when open on the Saffron background */
+    .menu-btn.active div { background: var(--white); }
+    .menu-btn.active div:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-btn.active div:nth-child(2) { opacity: 0; }
+    .menu-btn.active div:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}
+
+/* Layouts */
+main { flex-grow: 1; padding: 4rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
+h1.balance-text { text-wrap: balance; font-size: clamp(2rem, 5vw, 3.5rem); color: var(--saffron); text-align: center; margin-bottom: 1.5rem; }
+.section-card { background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 2rem; border-top: 4px solid var(--saffron); }
+
+/* Missing Grid Container added back for Academics page */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 2rem; }
+
+/* Buttons */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 30px; background: var(--saffron); color: var(--white);
+    text-decoration: none; font-weight: bold; border-radius: 30px; border: none; cursor: pointer; transition: var(--transition);
+}
+.btn:hover { background: var(--saffron-dark); transform: translateY(-3px); color: var(--white); box-shadow: 0 4px 15px rgba(255,103,31,0.3); }
+#install-btn { display: none; margin: 0 auto 2rem; }
+
+/* Footer */
+footer { background: var(--black); color: var(--white); text-align: center; padding: 2rem; border-top: 4px solid var(--saffron); }
